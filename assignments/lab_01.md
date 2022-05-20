@@ -1,6 +1,18 @@
-LAB 1: Ricco Ferraro
+# LAB 1: Ricco Ferraro
 
-Steps to get Spack working in M2: 
+
+##Peer Review: 
+
+### Progress: 
+I paired with Liaho. He seemed to have the spack.yaml file together, but hadn't tried executing it in M2 yet. I was in a similar position. 
+### Problems: 
+I had issues with getting my own custom Yaml working. When I just coppied the one (and slightly modified) from class it behaved correctly 
+### Ideas: 
+Maybe running a matrix of all compilers packages and targets is inefficient? 
+
+
+
+## Steps to get Spack working in M2: 
 1. use VIM to make spack_bootstrap.sh with the following contents: 
 
 ```
