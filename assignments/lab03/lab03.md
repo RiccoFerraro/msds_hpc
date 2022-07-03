@@ -89,4 +89,27 @@ First:
 2. Type `bash` into the terminal that starts inside the above docker container to run bash 
 3. type `./lab03_docker.sh` into the terminal to build numpy (this clones and configures the dev numpy calls the make file)
 4. This should compile numpy with the fortan and gcc compilers that were included via spack in the docker image created above. 
-5. voila! 
+5. The result looks like this:
+
+```INFO: CCompilerOpt.cache_flush[857] : write cache to path -> /numpy/build/temp.linux-x86_64-3.8/ccompiler_opt_cache_ext.py
+INFO: 
+########### CLIB COMPILER OPTIMIZATION ###########
+INFO: Platform      : 
+  Architecture: x64
+  Compiler    : gcc
+
+CPU baseline  : 
+  Requested   : 'min'
+  Enabled     : SSE SSE2 SSE3
+  Flags       : -msse -msse2 -msse3
+  Extra checks: none
+
+CPU dispatch  : 
+  Requested   : 'max -xop -fma4'
+  Enabled     : SSSE3 SSE41 POPCNT SSE42 AVX F16C FMA3 AVX2 AVX512F AVX512CD AVX512_KNL AVX512_KNM AVX512_SKX AVX512_CNL
+  Generated   : none
+INFO: CCompilerOpt.cache_flush[857] : write cache to path -> /numpy/build/temp.linux-x86_64-3.8/ccompiler_opt_cache_clib.py
+./lab03_docker.sh: line 24: python: command not found
+root@cafae30f7cd8:/# ```
+
+6. To Test your numpy installation: type `python3.8 -c 'import nuumpy; print(numpy.pi)'`
