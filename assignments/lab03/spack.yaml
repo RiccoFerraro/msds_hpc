@@ -1,0 +1,23 @@
+spack:
+  specs:
+  - gcc@10.3.0
+  - python@3.8.12
+  - py-pandas
+  - py-matplotlib
+  - py-numpy+blas+lapack
+  - py-cython
+  - openblas
+  concretization: together
+  container:
+    format: docker
+    images:
+      os: ubuntu:18.04
+      spack: v0.17.2
+    os_packages:
+      final:
+      - libgfortran4
+      - libgomp1
+    extra_instructions:
+      final:
+        RUN cd /opt/view/bin; find . -xtype l -exec sh -c 'ln -f -s $(basename $(readlink $0)) $(basename $0)' {} \;
+
