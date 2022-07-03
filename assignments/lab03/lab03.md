@@ -109,7 +109,13 @@ CPU dispatch  :
   Enabled     : SSSE3 SSE41 POPCNT SSE42 AVX F16C FMA3 AVX2 AVX512F AVX512CD AVX512_KNL AVX512_KNM AVX512_SKX AVX512_CNL
   Generated   : none
 INFO: CCompilerOpt.cache_flush[857] : write cache to path -> /numpy/build/temp.linux-x86_64-3.8/ccompiler_opt_cache_clib.py
-./lab03_docker.sh: line 24: python: command not found
-root@cafae30f7cd8:/# ```
+# ls
+CITATION.bib	      MANIFEST.in  azure-pipelines.yml	    build		  environment.yml	   pyproject.toml	     setup.cfg		    tools
+INSTALL.rst	      README.md    azure-steps-windows.yml  cythonize.dat	  linter_requirements.txt  pytest.ini		     setup.py		    tox.ini
+LICENSE.txt	      THANKS.txt   benchmarks		    doc			  numpy			   release_requirements.txt  site.cfg.example	    versioneer.py
+LICENSES_bundled.txt  __pycache__  branding		    doc_requirements.txt  pavement.py		   runtests.py		     test_requirements.txt
+# cd .. 
+# python -c 'import numpy; print(numpy.pi);'
+3.141592653589793 ```
 
 6. To Test your numpy installation: type `python3.8 -c 'import nuumpy; print(numpy.pi)'`
