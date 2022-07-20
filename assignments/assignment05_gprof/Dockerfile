@@ -7,11 +7,13 @@ FROM spack/ubuntu-bionic:v0.17.2 as builder
 RUN mkdir /opt/spack-environment \
     &&  (echo "spack:" \
     &&   echo "  specs:" \
+    &&   echo "  - gcc@10.3.0" \
     &&   echo "  - python@3.8.12" \
     &&   echo "  - py-pandas" \
     &&   echo "  - py-matplotlib" \
     &&   echo "  - py-numpy+blas+lapack" \
-    &&   echo "  - openblas threads=openmp" \
+    &&   echo "  - py-cython" \
+    &&   echo "  - openblas" \
     &&   echo "  concretization: together" \
     &&   echo "  config:" \
     &&   echo "    install_tree: /opt/software" \
@@ -41,9 +43,6 @@ COPY --from=builder /opt/spack-environment /opt/spack-environment
 COPY --from=builder /opt/software /opt/software
 COPY --from=builder /opt/view /opt/view
 COPY --from=builder /etc/profile.d/z10_spack_environment.sh /etc/profile.d/z10_spack_environment.sh
-COPY Makefile Makefile
-COPY numpy numpy
-COPY lab03_docker.sh lab03_docker.sh
 
 RUN apt-get -yqq update && apt-get -yqq upgrade \
     && apt-get -yqq install libgfortran4 libgomp1 \
@@ -55,8 +54,17 @@ RUN apt-get update && \
     apt-get install -y git
 
 RUN  git config --global --add safe.directory /numpy
-RUN apt-get -y install python3.8-pip
-RUN apt install python3.8-distutils
+
+RUN apt-get -y install python3.8-distutils
+RUN apt-get -y install python3-setuptools
+RUN apt-get -y install python3.8-dev
+RUN apt-get -y install python3-pip
+
+COPY Makefile Makefile
+COPY lab03_docker.sh lab03_docker.sh
+COPY test.sh test.sh 
+RUN chmod u+x lab03_docker.sh
+RUN chmod u+x test.sh
 
 RUN cd /opt/view/bin; find . -xtype l -exec sh -c 'ln -f -s $(basename $(readlink $0)) $(basename $0)' {} \;
 ENTRYPOINT ["/bin/bash", "--rcfile", "/etc/profile", "-l"]

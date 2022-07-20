@@ -12,9 +12,8 @@ cd numpy
 git submodule update --init
 cd .. 
 
-python3.8 -m pip install cython
+python3.8 -m ensurepip
 python3.8 -m pip install ./numpy
-
 
 
 # make numpy

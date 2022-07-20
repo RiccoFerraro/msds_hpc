@@ -1,0 +1,7 @@
+Note: After 
+1. After many trials and tribulations compiling numpy with a .configure script and a setup.py with compiler flags, unfortunately, I could not get gprof to work or generate any gmon.out. 
+This effort can be seen in the `/assignment05_gprof` diretory where there is a Dockerfile (to dockerize numpy) a spack directory and a spack.yaml
+2. After then switching to trying the /blis package, I ran into an issue (due to hand vectorization) where the -fomit-frame-pointer was used by blis. the -fomit-frame-pointer compiler flag is incompatible with -pg profiling flags. 
+3. As a last effort, the saxpy.cpp file along with cmake were used to compile and profile. This was done in m2.  Finally I was able to get a gmon.out and use gprof to render its results (most of the time was spent in the for loop)
+
+supporting files can be found in the subdirectory `/assignment05_gprof`. There is also a screen shot `/assignment05_gprof/assignment05_gprof_output.png` which shows the output of profiling saxpy. 
